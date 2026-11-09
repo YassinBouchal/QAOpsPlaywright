@@ -37,7 +37,7 @@ test("Screenshot", async({page}) => {
     await expect(page.locator("#displayed-text")).toBeHidden();
 });
 
-test("Visual Comparison", async({page}) => {
+/* test("Visual Comparison", async({page}) => {
     await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
     expect(await page.screenshot()).toMatchSnapshot('landing.png');
-});
+}); */

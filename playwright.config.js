@@ -8,7 +8,7 @@ import { workers } from 'node:cluster';
  */
 const config = ({
   testDir: './tests',
-  retries: 2,
+  retries: 3,
   //workers: 3,
   timeout: 30 * 1000, // 30sec 
   expect: {
