@@ -39,6 +39,7 @@ for(const data of dataset) {
 
         const dashboardPage = poManager.getDashboardPage();
         await dashboardPage.addProductToCart(data.productName);
+        await dashboardPage.validateProductInCart();
         await dashboardPage.navigateToCart();
 
         const cartPage = poManager.getCartPage();

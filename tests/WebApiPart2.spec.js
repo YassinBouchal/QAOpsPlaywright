@@ -147,7 +147,7 @@ test("End to end product order test", async () => {
     await page.locator("tbody").waitFor();
     const rows = page.locator("tbody tr");
 
-    for (let i = 0; i < await rows.count(); i++) {
+    /* for (let i = 0; i < await rows.count(); i++) {
         const rowOrderId = await rows.nth(i).locator("th").textContent();
         console.log("rowOrderId = " + rowOrderId)
 
@@ -155,7 +155,13 @@ test("End to end product order test", async () => {
             await rows.nth(i).locator("text=View").click();
             break;
         }
-    }
+    } */
+
+    await page
+        .locator('tr')
+        .filter({ hasText: orderIdCleanedUp })
+        .getByRole('button', { name: 'View' })
+        .click();
 
     // Verify order summary page
     await expect(page.locator('app-order-details')).toContainText(userEmail);
@@ -176,23 +182,23 @@ test('Test case 2', async () => {
 });
 
 test("mocks a fruit and doesn't call api", async ({ page }) => {
-  // Mock the api call before navigating
-  await page.route('*/**/api/v1/fruits', async route => {
-    const json = [
-        { 
-            name: 'Strawberry', 
-            id: 21 
-        },
-        { 
-            name: 'Banana', 
-            id: 22 
-        }
-    ];
-    await route.fulfill({ json });
-  });
-  // Go to the page
-  await page.goto('https://demo.playwright.dev/api-mocking');
+    // Mock the api call before navigating
+    await page.route('*/**/api/v1/fruits', async route => {
+        const json = [
+            {
+                name: 'Strawberry',
+                id: 21
+            },
+            {
+                name: 'Banana',
+                id: 22
+            }
+        ];
+        await route.fulfill({ json });
+    });
+    // Go to the page
+    await page.goto('https://demo.playwright.dev/api-mocking');
 
-  // Assert that the Strawberry fruit is visible
-  await expect(page.getByText('Strawberry')).toBeVisible();
+    // Assert that the Strawberry fruit is visible
+    await expect(page.getByText('Strawberry')).toBeVisible();
 });
