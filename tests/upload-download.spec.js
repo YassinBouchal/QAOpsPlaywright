@@ -63,7 +63,7 @@ test("Upload download excel validation", async ({ page }) => {
     writeExcel(textSearch, updateValue, { changeRow: 0, changeCol: 2 }, downloadPath);
     // Upload updated file
     await page.locator("#fileinput").click();
-    await page.locator("#fileinput").setInputFiles(filePath); // only if type="file"
+    await page.locator("#fileinput").setInputFiles(downloadPath); // only if type="file"
     const textLocator = page.getByText(textSearch);
     const desiredRow = page.getByRole('row').filter({ has: textLocator });
     await expect(desiredRow.locator("#cell-4-undefined")).toContainText(updateValue);
