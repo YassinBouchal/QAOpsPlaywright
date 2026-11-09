@@ -1,0 +1,7 @@
+Before filter = 9
+After filter = 1
+IsInteger = true
+M-NII7TY
+eventCardAfterBooking = 1
+SeatsBeforeBooking = 50
+SeatsAfterbooking = 49

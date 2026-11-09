@@ -1,0 +1,1 @@
+User radiobutton is checked: true

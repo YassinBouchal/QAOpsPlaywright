@@ -1,0 +1,4 @@
+C:\Users\yassinbo\OneDrive - Cegeka\Bench\Automation\Playwright\test-results\.playwright-artifacts-7\87de24f8-e890-4ce9-a64a-d2373db5e4c4
+FOUND
+Search: Mango
+Result: { row: 2, column: 2 }

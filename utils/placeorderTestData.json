@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "username": "yassin008@test.com",
+        "password": "Testing123!",
+        "productName": "ZARA COAT 3",
+        "creditCardInformation": {
+            "creditCardNumber": "1111 2222 3333 4444",
+            "cvvCode": "123",
+            "cardHolder": "Yassin Testing",
+            "monthExpiryDate": "01",
+            "yearExpiryDate": "30"
+        },
+        "country": "Belgium",
+        "coupon": "rahulshettyacademy"
+    },
+    {
+        "id": 2,
+        "username": "yassin001@test.com",
+        "password": "Testing123!",
+        "productName": "ADIDAS ORIGINAL",
+        "creditCardInformation": {
+            "creditCardNumber": "5555 6666 7777 8888",
+            "cvvCode": "456",
+            "cardHolder": "Yassin QA",
+            "monthExpiryDate": "05",
+            "yearExpiryDate": "31"
+        },
+        "country": "France",
+        "coupon": "rahulshettyacademy"
+    }
+]
