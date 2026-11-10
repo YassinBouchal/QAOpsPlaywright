@@ -1,4 +1,4 @@
-import { type Locator, type Page } from '@playwright/test';
+import { type Locator, type Page, expect} from '@playwright/test';
 
 export class DashboardPage {
 
@@ -6,12 +6,14 @@ export class DashboardPage {
     products: Locator;
     productsText: Locator;
     cart: Locator;
+    numberOfItemInCart: Locator;
 
     constructor(page: Page) {
         this.page = page;
         this.products = page.locator(".card-body");
         this.productsText = page.locator(".card-body b");
         this.cart = page.locator("[routerlink*='cart']");
+        this.numberOfItemInCart = page.locator("//label[text()='1']");;
     }
 
     async addProductToCart(productName: string) {
@@ -19,7 +21,7 @@ export class DashboardPage {
         const titles = await this.productsText.allTextContents();
         console.log(titles);
         const count = await this.products.count();
-        for(let i = 0; i < count; i++) {
+        for (let i = 0; i < count; i++) {
             if (await this.products.nth(i).locator("b").textContent() === productName) {
                 await this.products.nth(i).locator("text= Add To Cart").click();
                 break;
@@ -30,6 +32,10 @@ export class DashboardPage {
 
     async navigateToCart() {
         await this.cart.click();
+    }
+
+    async validateProductInCart() {
+        await expect(this.numberOfItemInCart).toHaveText('1');
     }
 }
 

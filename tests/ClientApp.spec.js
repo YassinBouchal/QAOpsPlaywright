@@ -1,11 +1,10 @@
-const {test, expect} = require('@playwright/test');
+const { test, expect } = require('@playwright/test');
 
 
 // Enabling parallel mode
 //test.describe.configure({ mode: 'parallel' });
 
-test('@Web Client App login', async ({page})=>
-{
+test('@Web Client App login', async ({ page }) => {
     const url = "https://rahulshettyacademy.com/client";
     await page.goto(url);
 
@@ -19,7 +18,7 @@ test('@Web Client App login', async ({page})=>
     const phoneNumber = page.locator("#userMobile");
     const password = page.locator("#userPassword");
     const confirmPassword = page.locator("#confirmPassword");
-    const ageCheckbox =  page.locator("input[type=checkbox]");
+    const ageCheckbox = page.locator("input[type=checkbox]");
     const registerBtn = page.locator("#login");
     const loginBtn = page.locator(".btn.btn-primary");
     const login = page.locator("[value='Login']");
@@ -44,8 +43,7 @@ test('@Web Client App login', async ({page})=>
 }
 );
 // just a comment
-test("End to end product order test", async({page})=>
-{
+test("End to end product order test", async ({ page }) => {
     const url = "https://rahulshettyacademy.com/client";
     await page.goto(url);
 
@@ -126,15 +124,15 @@ test("End to end product order test", async({page})=>
     const optionsCount = await dropdown.locator("button").count();
     console.log(optionsCount.toString());
 
-    for (let i=0; i < optionsCount; i++){
+    for (let i = 0; i < optionsCount; i++) {
         const text = await dropdown.locator("button").nth(i).textContent();
-        if ( text.toString().includes('Belgium')){
+        if (text.toString().includes('Belgium')) {
             await dropdown.locator("button").nth(i).click();
             break;
         }
-    }    
+    }
 
-   
+
     // Apply coupon
     const couponField = page.getByText('Apply Coupon');
     const coupon = "rahulshettyacademy"
@@ -145,7 +143,7 @@ test("End to end product order test", async({page})=>
 
     const couponApplied = page.locator("//p[text()='* Coupon Applied']");
     await expect(couponApplied).toBeVisible();
-    
+
     // Place order
     const orderBtn = page.getByText('Place Order');
     await orderBtn.click();
@@ -174,7 +172,7 @@ test("End to end product order test", async({page})=>
     await page.locator("tbody").waitFor();
     const rows = page.locator("tbody tr");
 
-    for(let i = 0; i < await rows.count(); i++) {
+    /* for(let i = 0; i < await rows.count(); i++) {
         const rowOrderId = await rows.nth(i).locator("th").textContent();
         console.log("rowOrderId = " + rowOrderId)
         
@@ -182,7 +180,13 @@ test("End to end product order test", async({page})=>
             await rows.nth(i).locator("text=View").click();
             break;
         }
-    }
+    } */
+
+    await page
+        .locator('tr')
+        .filter({ hasText: orderIdCleanedUp })
+        .getByRole('button', { name: 'View' })
+        .click();
 
     // Verify order summary page
     await expect(page.locator('app-order-details')).toContainText(userEmail);
