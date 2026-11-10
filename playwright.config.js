@@ -20,7 +20,7 @@ const config = ({
   use: {
     //actionTimeout: 15 * 1000, // click(), check(), fill(), ... will fail after 15sec if not set => global timeout is used (30sec)
     browserName: 'chromium', // chromium, firefox, webkit
-    headless: false,
+    headless: true,
     screenshot: 'on',
     trace: 'retain-on-failure', //off, on => retain-on-failure preferred to save memory
     video: 'retain-on-failure'
